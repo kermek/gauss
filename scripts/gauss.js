@@ -93,7 +93,6 @@ function b_gauss(sSelector){
         g.solutionTable.append(tr.append('~'));
         }
     g.solve = function(){
-        g.matrix = g.getTable();
         g.m = g.matrix;
         var n = g.m.length;
         g.show(g.m);
@@ -133,9 +132,21 @@ function b_gauss(sSelector){
                     g.x[i] = m / g.m[i][i];
                     g.nextStep('Solving x' + (i + 1) + ': ' + m.toFixed(3) + ' divided by ' + (+g.m[i][i]).toFixed(3) + ':');
                     g.showX(g.x, i);
-                    
                     }
                 }
+        return 1;
+        }
+    g.vectorE = function(){
+        var n = g.matrix.length;
+        var m = g.matrix[0].length - 1;
+        g.ve = [];
+        for (var i = 0; i < n; i++){
+            var ss = 0;
+            for (var j = 0; j < m; j++){
+                ss += g.matrix[i][j] * g.x[j];
+                }
+            g.ve[i] = ss - g.matrix[i][m];
+            }
         }
     g.showX = function(x, i){
         g.nextStep('Solved x' + (i + 1) + ' = ' + Math.round((+x[i]) / g.e) * g.e);
@@ -145,6 +156,7 @@ function b_gauss(sSelector){
         g.solutionTable.append(tr.append(sMessage));
         }
     g.solution = function() {
+    g.matrix = g.getTable();
     g.solutionTable.empty();
     g.nextStep('Accuracy =  ' + g.e);
     var result = g.solve();
@@ -154,6 +166,9 @@ function b_gauss(sSelector){
             break;
         case 1: 
             g.solutionText.append("Solution found");
+            g.vectorE();
+            g.nextStep('X vector: ' + g.x);
+            g.nextStep('Vector of errors: ' + g.ve);
             break;
         default: 
             g.solutionText.append("Can't find solution");
