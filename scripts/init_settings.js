@@ -2,6 +2,7 @@ var _init_settings = {
 	 'b-form__vector_x' : 'X vector'
 	,'b-form__vector_e' : 'Vector of errors'
 	,'matrix' : [
+
                      ['   3', ' 2', ' 1', ' 1', '-2']
                     ,['   1', '-1', ' 4', '-1', '-1']
                     ,['  -2', '-2', '-3', ' 1', ' 9']
