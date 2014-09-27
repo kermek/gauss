@@ -53,18 +53,23 @@ QUnit.test("hello test", function (assert) {
     assert.ok(1 == "1", "Passed!");
 });
 */
-QUnit.test("gauss_latex.solve", function (assert) {
-    var g = new b_gauss();
+QUnit.test("gauss_solver.solve", function (assert) {
+    var g = new b_gauss__solver();
     var t = {};
     
-    t.happy               = {};
-    t.happyExpected       = {};
-    t.unhappy             = {};
+    t.happy               = [
+                     ['   3', ' 2', ' 1', ' 1', '-2']
+                    ,['   1', '-1', ' 4', '-1', '-1']
+                    ,['  -2', '-2', '-3', ' 1', ' 9']
+                    ,['   1', ' 5', '-1', ' 2', ' 4']
+                ];
+    t.happyExpected       = [];
+    t.unhappy             = -1;
     t.unhappyExpected     = -1;
     
         
-    assert.ok(happy, happyExpected);
-    assert.ok(happy, happyExpected);
+    assert.ok(t.happy == t.happyExpected, 'Happy path passed!');
+    assert.ok(t.happy == t.unhappyExpected, 'Unhappy path passed!');
 });
 </script>
 </body>

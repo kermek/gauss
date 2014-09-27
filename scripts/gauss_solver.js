@@ -60,8 +60,8 @@ g.showVector = function(aVector, sStyle){
 g.showFrac = function(oFraction){
     return '\\frac{' + oFraction.numerator + '}{' + oFraction.denominator + '}';
     }
-g.solve = function(oMatrix){
-    g.m = oMatrix;
+g.solve = function(aMatrix){
+    g.m = aMatrix;
 	g.x = [];
     var n = g.m.length;
     var aSystem = [];
@@ -129,9 +129,16 @@ g.solve = function(oMatrix){
             }
     return g;
     }
-g.vectorE = function(oMatrix, oVectorX){
-    var n = oMatrix.length;
-    var m = oMatrix[0].length - 1;
+g.toString = function(){
+	var a = [];
+	for (var i = 0; i < g.x.length; i++){
+		a[i] = g.x[i].toString();
+		}
+	return a;
+	}
+g.vectorE = function(aMatrix, oVectorX){
+    var n = aMatrix.length;
+    var m = aMatrix[0].length - 1;
     var v = [];
 	var result = {};
 	result.show=[];
@@ -139,9 +146,9 @@ g.vectorE = function(oMatrix, oVectorX){
     for (var i = 0; i < n; i++){
         var ss = new Fraction(0);
         for (var j = 0; j < m; j++){
-            ss = ss.add(oMatrix[i][j].multiply(oVectorX[j]));
+            ss = ss.add(aMatrix[i][j].multiply(oVectorX[j]));
             }
-        v[i] = ss.subtract(oMatrix[i][m]);
+        v[i] = ss.subtract(aMatrix[i][m]);
         }
 	result.vectorE	= v;
 	var a = new Array(v.length);

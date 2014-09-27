@@ -39,6 +39,5 @@ The program should contain:
 Notes:
 ------
 
-1, 2  subtasks done.
-3d    in process.
-4th   need to sepatrate logic and presentation, QUint test framework planned to be used
+All subtasks done.
+Following frameworks used: Fractions.js, MathJax.js, QUnit.js, JQuery.
