@@ -51,10 +51,10 @@ g.showSystem = function(aSystem, bArrow){
         s += '\\end{cases}' + (bArrow ? '\\Rightarrow' : '') + '$$';
     return s;
     }
-g.showVector = function(aVector){
-    var s =  '$$\\begin{pmatrix}';
+g.showVector = function(aVector, sStyle){
+    var s =  '$$\\begin{' + sStyle + '}';
         s += aVector.join('\\\\');
-        s += '\\end{pmatrix}$$';
+        s += '\\end{' + sStyle + '}$$';
     return s;
     }
 g.showFrac = function(oFraction){
@@ -144,10 +144,13 @@ g.vectorE = function(oMatrix, oVectorX){
         v[i] = ss.subtract(oMatrix[i][m]);
         }
 	result.vectorE	= v;
-	result.show[0]	= 'Vector X';
-	result.show[1]	= g.showVector(oVectorX); 
-	result.show[2]	= 'Vector E';
-	result.show[3] 	= g.showVector(result.vectorE); 
+	var a = new Array(v.length);
+	a[v.length/2] = settings.get('vector_x');
+	result.show[0]	= g.showVector(a, 'array');
+	result.show[1]	= g.showVector(oVectorX, 'pmatrix'); 
+	a[v.length/2] = settings.get('vector_e');
+	result.show[2]	= g.showVector(a, 'array');
+	result.show[3] 	= g.showVector(result.vectorE, 'pmatrix'); 
 	return result;
     }
 }
